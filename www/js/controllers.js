@@ -11,47 +11,62 @@ angular.module('starter.controllers', [])
 
   // Form data for the login modal
   $scope.loginData = {};
-  
-  
-    //URLS DO WEBSERVICE
-  var urlRest = "http://mobile-aceite.tcu.gov.br:80/mapa-da-saude/rest/remedios?codBarraEan=";
-  var urlRestLimite = "&quantidade=30";
-  
+
+
+  //URLS DO WEBSERVICE
+  var urlRest = "http://mobile-aceite.tcu.gov.br:80/mapa-da-saude/rest/remedios?";
+  var urlCod = "codBarraEan=";
+  var urlProd = "produto=";
+  var urlLimite30 = "quantidade=30";
+
   // Inicializando scope.data -- DIOGO
   $scope.data = {};
-  
+
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+  $ionicModal.fromTemplateUrl('templates/detalhes.html', {
     scope: $scope
-  }).then(function(modal) {
+  }).then(function (modal) {
     $scope.modal = modal;
   });
 
   // Triggered in the login modal to close it
-  $scope.fechaDetalhes = function() {
+  $scope.fechaDetalhes = function () {
     $scope.modal.hide();
   };
 
   // Open the login modal
-  $scope.login = function() {
+  $scope.detalhes = function () {
     $scope.resposta = resposta;
     $scope.modal.show();
   };
 
   // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
+  $scope.doLogin = function () {
     console.log('Doing login', $scope.loginData);
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
-    $timeout(function() {
+    $timeout(function () {
       $scope.closeLogin();
     }, 1000);
   };
-  
+
   $scope.procurar = function (data) {
-    var numero = $scope.data.codigo;
-    pesquisa(numero);
+    
+    var url = urlRest;
+
+    if ($scope.data.codigo) {
+      var numero = $scope.data.codigo;
+      url = url + urlCod + encodeURI(numero);
+    }
+
+    if ($scope.data.produto) {
+      var produto = $scope.data.produto;
+      url = url + urlProd + encodeURI(produto);
+    }
+    url = url + "&" + urlLimite30;
+    
+    pesquisaRest(url);
   };
 
 
@@ -66,11 +81,7 @@ angular.module('starter.controllers', [])
     });
   };
 
-  var pesquisa = function (codigoBarras) {
-
-    var url = urlRest + encodeURI(codigoBarras) + urlRestLimite;
-
-    //console.log("Searching for: " + $scope.data.codigo);
+  var pesquisaRest = function (url) {
 
     $http.get(url).then(function (resp) {
       $scope.resposta = resp;
@@ -78,23 +89,40 @@ angular.module('starter.controllers', [])
     });
 
   }
-  
-}])
+
+      }])
 
 
 
 
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('PlaylistsCtrl', function ($scope) {
   $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+    {
+      title: 'Reggae',
+      id: 1
+        },
+    {
+      title: 'Chill',
+      id: 2
+        },
+    {
+      title: 'Dubstep',
+      id: 3
+        },
+    {
+      title: 'Indie',
+      id: 4
+        },
+    {
+      title: 'Rap',
+      id: 5
+        },
+    {
+      title: 'Cowbell',
+      id: 6
+        }
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+.controller('PlaylistCtrl', function ($scope, $stateParams) {});

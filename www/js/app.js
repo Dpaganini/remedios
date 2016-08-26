@@ -41,19 +41,19 @@ angular.module('starter', ['ionic', 'ngCordova','starter.controllers'])
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.historico', {
+      url: '/historico',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/historico.html'
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.favoritos', {
+      url: '/favoritos',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
+          templateUrl: 'templates/favoritos.html',
           controller: 'PlaylistsCtrl'
         }
       }

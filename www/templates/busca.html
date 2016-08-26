@@ -1,21 +1,27 @@
-<ion-view view-title="Busca">
+<ion-view view-title="Leitor de Remédios">
   <ion-content>
-    <h1>Busca</h1>
-    
-    <div class="list">
+    <div class="list list-inset">
+        <div class="item item-divider">
+          Busca
+        </div>
+        <label class="item item-input">
+         <input type="number" placeholder="Código de Barras"  ng-model='data.codigo'>
+        </label>
+        
+        <label class="item item-input">
+          <input type="text" placeholder="Nome do Produto"  ng-model='data.produto'>
+        </label>
 
-  <div class="item item-input-inset">
-    <label class="item-input-wrapper">
-      <input type="text" placeholder="..."  ng-model='data.codigo'>
-    </label>
-    <button class="button button-small button-positive" ng-click='procurar(data)'>
-      Procurar
+        <button class="button button-positive button-block" ng-click='procurar(data)'>
+          Procurar
+        </button>
+      <div class="item item-divider">
+        Scanner
+      </div>
+      <div class="item">
+        <button class="button button-positive button-block" ng-click='escanear()'>Ler Código de Barras
     </button>
-  </div>
- <div class="item">
-    <button class="button button-positive button-block" ng-click='escanear()'>Ler Código de Barras
-    </button>
-</div>
+      </div>
 
 
   </ion-content>
