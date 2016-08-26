@@ -1,0 +1,21 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Detalhes</h1>
+    <div class="buttons">
+      <button class="button" ng-click="fechaDetalhes()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="data in resposta.data">
+        </h1>Produto: {{ data.produto }}</h1>
+        <p>Cód. Barras: {{ data.codBarraEan }}</p>
+        <p>Principio Ativo:  {{ data.principioAtivo }}</p>
+        <p>Apresentação:  {{ data.apresentacao }}</p>
+        <p>Classe:  {{ data.classeTerapeutica }}</p>
+        <p>Preço Máx.:  {{ data.pmc18 }}</p>
+          <i class="icon ion-chevron-left icon-accessory"></i>
+        </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>
